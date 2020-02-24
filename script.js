@@ -1,52 +1,58 @@
 // Assignment Code
 var numBox = document.getElementById("num");
-var symbox = document.getElementById("symbol");
+var symbox = document.getElementById("sym");
 var upperBox = document.getElementById("upperCase");
+var charbox = document.getElementById ("chars");
 var pwLength = prompt("input a number length here");
-var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector("generate");
+var pwArray = [ numBox, upperBox, symbox, charbox]
+
 
 
 // chararcter lenght request///
 
-var pwLength = prompt("")
+var pwLength = prompt("input a number length here");
 
-function checkNum() {
-  if (pwLength >= 8 || pwLength < 128){radioButtonCheck();
-  } else {
-    alert("You need to put in a password greater than 8 and less than 128!");
+	function checkNum() {
+		if (pwLength >= 8 || pwLength < 128){radioButtonCheck();
+		} else {
+			alert("You need to put in a password greater than 8 and less than 128!");
 
-  }
-}
-checkNum();
+		}
+	}
+	checkNum();
 
 // check if the number symbol and uppercase are checked. //
-var num = document.getElementById("")
 function radioButtonCheck(){
-	if (numBox.checked === false || symbox.checked === false || upperBox.checked === false){
-		alert("Please check next three boxes");
+	if (numBox.checked === false || symbox.checked === false || upperBox.checked === false || charbox.checked === false){
+		alert("Please select your criteria");
 	}
-	else if (numBox.checked === true || symbox.checked === true || upperBox.checked === true){
-		alert("click generate button")
+	var pwLength = prompt("Input character lenght")
 	}
-}
 
   
-  // function writePassword(l, characters)//
- 
-  function randomPassword(length) {
-    	console.log("Hello")
-       
-        for (var x = 0; x < PWlength; x++) {
-            var i = Math.floor(Math.random() * chars.length);
-            pass += chars.charAt(i);
-        }
-        return pass;
-      
+  
+  function generate(length = PWlength) {
+    var chars = letterSet.length;
+    var charUpper = letterSet.length.charUpper;
+    var num = numberSet.length;
+    var sym = symbolSet.length;
+    var all = uppercase + lowercase + numbers + symbols;
+    var password = '';
+    for (var index = 0; index < length; index++) {
+        var character = Math.floor(Math.random() * all.length);
+        password += all.substring(character, character + 1);
     }
-    
-// generated random buttom //
-  generateBtn.addEventListener("click",function(event){
-   console.log("test")
+    return password;
+}
+generateBtn.addEventListener("click",function(event){}
+  //    console.log("test")
+  
+
+
+
+// // generated random buttom //
+//   
   //  check to see at least 1 radio button is checked, if not alert that 1 needs to be checked. 
   // else, 
   // then prompt lenght PW. 
@@ -54,12 +60,7 @@ function radioButtonCheck(){
   // combine char set based on criteria selected.
   // randomly select that many char from combined char set
   
-    // var characters = char;
-	  // var chars = letterSet.length;
-		// var charUpper = letterSet.length.charUpper;
-		// var num = numberSet.length;
-    // var sym = symbolSet.length;
-  })
+	
   
 /* // Write password to the #password input
   
@@ -70,5 +71,4 @@ function radioButtonCheck(){
 
 // }
 
-// Add event listener to generate button
-// 
+// Add event listener to generate button.
