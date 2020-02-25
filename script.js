@@ -3,16 +3,12 @@ var numBox = document.getElementById("num");
 var symbox = document.getElementById("sym");
 var upperBox = document.getElementById("upperCase");
 var charbox = document.getElementById ("chars");
-var pwLength = prompt("input a number length here");
-var generateBtn = document.querySelector("generate");
-var pwArray = [ numBox, upperBox, symbox, charbox]
+var generateBtn = document.querySelector("#generate");
+var passwordDisplay = document.getElementById("password")
 
 
 
 // chararcter lenght request///
-
-var pwLength = prompt("input a number length here");
-
 	function checkNum() {
 		if (pwLength >= 8 || pwLength < 128){radioButtonCheck();
 		} else {
@@ -20,55 +16,55 @@ var pwLength = prompt("input a number length here");
 
 		}
 	}
-	checkNum();
+
 
 // check if the number symbol and uppercase are checked. //
 function radioButtonCheck(){
-	if (numBox.checked === false || symbox.checked === false || upperBox.checked === false || charbox.checked === false){
-		alert("Please select your criteria");
-	}
 	var pwLength = prompt("Input character lenght")
 	}
 
   
-  
-  function generate(length = PWlength) {
-    var chars = letterSet.length;
-    var charUpper = letterSet.length.charUpper;
-    var num = numberSet.length;
-    var sym = symbolSet.length;
-    var all = uppercase + lowercase + numbers + symbols;
-    var password = '';
-    for (var index = 0; index < length; index++) {
-        var character = Math.floor(Math.random() * all.length);
-        password += all.substring(character, character + 1);
+var chars = "abcdefghijklmnopqrstuvwzxy";
+var charUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var num = "0123456789";
+var sym = "!@#$%^&*=_";
+var pwArray = [ num, charUpper, sym, chars]
+console.log(pwArray);
+
+
+generateBtn.addEventListener("click",function(event){
+
+  if (numBox.checked === false && symbox.checked === false && upperBox.checked === false && charbox.checked === false){
+		alert("Please select your criteria");
+	}
+  else {
+    var pwLength = prompt("input a number length here");
+
+    var possiblePasswordCharacters = '';
+    if (numBox.checked === true ){
+      possiblePasswordCharacters = possiblePasswordCharacters + num; 
     }
-    return password;
-}
-generateBtn.addEventListener("click",function(event){}
-  //    console.log("test")
-  
+    
+    if (symbox.checked === true ){
+      possiblePasswordCharacters = possiblePasswordCharacters + sym; 
+    }
+    
+    if (upperBox.checked === true ){
+      possiblePasswordCharacters = possiblePasswordCharacters + charUpper; 
+    }
+    if (charbox.checked === true ){
+      possiblePasswordCharacters = possiblePasswordCharacters + chars; 
+    }
 
+    console.log(possiblePasswordCharacters);
 
-
-// // generated random buttom //
-//   
-  //  check to see at least 1 radio button is checked, if not alert that 1 needs to be checked. 
-  // else, 
-  // then prompt lenght PW. 
-  // put selected criteria 2gether get list of characters based on selected criteria.
-  // combine char set based on criteria selected.
-  // randomly select that many char from combined char set
-  
+    var password = '';
+    for (var index = 0; index < pwLength; index++) {
+        var character = possiblePasswordCharacters[Math.floor(Math.random() * possiblePasswordCharacters.length)];
+        password = password + character;
+    }
+    passwordDisplay.value = password;
+  } 
+});
 	
   
-/* // Write password to the #password input
-  
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// Add event listener to generate button.
